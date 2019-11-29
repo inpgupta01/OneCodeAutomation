@@ -80,8 +80,7 @@ def softmcu_upgrade(mcu_ip):
         print(ProductType)
 
         if ProductType == 'SOFT_MCU_EDGE':
-            print("\nBuild Path : "+path)
-            print("\nBuild Number : "+build)
+            
             stdin, stdout, stderr = ssh.exec_command("yum install wget -y && cd /opt/polycom/rpp/bin/uf && wget "+path+" && ./mounting.py "+build+" /tmp/rmx_version_bin && cd /tmp/rmx_version_bin/scripts && ./install && reboot",get_pty=True)
             for line in stdout:
                 print(line)
