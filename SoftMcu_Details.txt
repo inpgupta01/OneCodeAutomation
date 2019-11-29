@@ -1,0 +1,6 @@
+{
+  "host": "10.206.100.139",
+  "username": "root",
+  "password": "kitten",
+  "target_version":	"8.9.0"
+}
