@@ -1,0 +1,57 @@
+OCMP_SIG_ip=192.168.183.205
+OCMP_RTP_ip=192.168.183.205
+OCMP_SIGport_183=5060
+OCMP_SIGport_180=5060
+sipp_ip1=192.168.183.108
+sipp_ip2=192.168.183.108
+sipp_ip3=192.168.183.215
+sipp_rtp_ip1=192.168.183.215
+sipp_rtp_ip2=192.168.183.215
+sipp_port1=11100
+sipp_port2=11200
+sipp_port3=11300
+sipp_port4=11400
+sipp_port5=11500
+sipp_port6=11600
+sipp_port7=11700
+sipp_port8=11800
+sipp_port9=11900
+sipp_port10=12000
+sipp_bridge_port1=23022
+sipp_bridge_port2=23024
+sipp_rtp_port1=21000
+sipp_rtp_port2=22000
+sipp_rtp_port3=23000
+outg_sig_transport=u1
+brdg_sig_transport=u1
+
+
+Test Case:Payload_Value_Change_TC01
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_Payloadchange.xml -t u1 -m 1 -i 192.168.183.108 -p 11800 192.168.183.205:5060 -mi 192.168.183.108 -mp 21000
+logcheck:Method:488 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Garbage_Value_After_Message_Body_TC02
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_Garbageaftermsgbody.xml -t u1 -m 1 -i 192.168.183.108 -p 11800 192.168.183.205:5060 -mi 192.168.183.108 -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Content_Length_Change_TC03
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_ContentLength.xml -t u1 -m 1 -i 192.168.183.108 -p 11800 192.168.183.205:5060 -mi 192.168.183.108 -mp 21000
+logcheck:Method:400 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_Via_200_TC04
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_viain200.xml -t u1 -m 1 -i 192.168.183.108 -p 11800 192.168.183.205:5060 -mi 192.168.183.108 -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_Via_200_TC05
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_2callid.xml -t u1 -m 1 -i 192.168.183.108 -p 11800 192.168.183.205:5060 -mi 192.168.183.108 -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_Invalid_Via_Contact_TC06
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_InvalidViaandContactHeaders.xml -t u1 -m 1 -i 192.168.183.108 -p 11800 192.168.183.205:5060 -mi 192.168.183.108 -mp 21000
+logcheck:Method:400 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE

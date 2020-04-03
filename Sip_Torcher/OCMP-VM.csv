@@ -1,0 +1,8 @@
+SEQUENTIAL
+#CallingPartyNo.,CGPN, Connection IP
+#subrat;1001;16.181.37.55;16.181.37.55
+#subrat;1001;[::ffff:192.0.2.10];16.181.37.55
+subrat;1001;[2001:db8::9:1];192.168.183.205
+
+
+

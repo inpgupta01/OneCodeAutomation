@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+
+<!-- This program is free software; you can redistribute it and/or      -->
+<!-- modify it under the terms of the GNU General Public License as     -->
+<!-- published by the Free Software Foundation; either version 2 of the -->
+<!-- License, or (at your option) any later version.                    -->
+<!--                                                                    -->
+<!-- This program is distributed in the hope that it will be useful,    -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of     -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the      -->
+<!-- GNU General Public License for more details.                       -->
+<!--                                                                    -->
+<!-- You should have received a copy of the GNU General Public License  -->
+<!-- along with this program; if not, write to the                      -->
+<!-- Free Software Foundation, Inc.,                                    -->
+<!-- 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA             -->
+<!--                                                                    -->
+<!--                 Sipp default 'uac' scenario.                       -->
+<!--                                                                    -->
+
+<scenario name="Hold Resume">
+
+  <send retrans="500">
+    <![CDATA[
+
+      INVITE sip:[field1]@[remote_ip]:[remote_port];transport=[transport] SIP/2.0
+      From: <sip:[field0]@[local_ip]>;tag=[call_number]
+      To: "hdhsdhdhdhhd" <sip:[field1]@[remote_ip]:[remote_port];transport=[transport]>
+      Call-ID: [call_id]
+      CSeq: [cseq] INVITE
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      Max-Forwards: 70
+      Contact: <sip:[field0]@[local_ip]:[local_port];transport=[transport]>
+      Allow: INVITE,CANCEL,BYE,ACK,INFO,REFER,UPDATE,OPTIONS,SUBSCRIBE,NOTIFY,MESSAGE,PRACK
+      Supported: replaces
+      User-Agent:Avaya A175 Collaboration Tablet
+      Content-Type: application/sdp
+      Content-Length: [len]
+
+      v=0
+      o=sip:[field0]@[local_ip] 1 23 IN IP[local_ip_type] [local_ip]
+      s=sip:[field0]@[local_ip]
+      c=IN IP[media_ip_type] [media_ip]
+      t=0 0
+      m=audio [media_port] RTP/AVP 0 119
+      b=AS:64
+      a=rtpmap:0 PCMA/8000
+      a=rtpmap:119 telephone-event/8000
+      a=fmtp:119 0-15
+      a=sendrecv
+    ]]>
+  </send>
+
+
+  <recv response="100" optional="true">
+  </recv>
+
+  <recv response="183" optional="true">
+  </recv>
+
+  <recv response="180" optional="true">
+  </recv>
+
+  <recv response="200" rrs="true">
+  </recv>
+
+  <send>
+    <![CDATA[
+
+      ACK [next_url] SIP/2.0
+      [last_From:]
+      [last_To:]
+      [last_Call-ID:]
+      CSeq: [cseq] ACK
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      [routes]
+      Max-Forwards: 70
+      User-Agent: Avaya A175 Collaboration Tablet
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+     <pause milliseconds="7000"/>
+ 
+<send>
+    <![CDATA[
+
+      BYE [next_url] SIP/2.0
+      [last_From:]
+      [last_To:]
+      Call-ID: [call_id]
+      CSeq: [cseq] BYE
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      [routes]
+      Max-Forwards: 70
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+  <recv response="200" rrs="true">
+  </recv>
+
+  <!-- Keep the call open for a while in case the 200 is lost to be     -->
+  <!-- able to retransmit it if we receive the BYE again.               -->
+  <!-- definition of the response time repartition table (unit is ms)   -->
+  <ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200"/>
+
+  <!-- definition of the call length repartition table (unit is ms)     -->
+  <CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000"/>
+
+</scenario>

@@ -1,0 +1,229 @@
+OCMP_SIG_ip=192.168.183.205
+OCMP_RTP_ip=192.168.183.205
+OCMP_SIGport_183=5060
+OCMP_SIGport_180=5060
+sipp_ip1=192.168.183.215
+sipp_ip2=192.168.183.215
+sipp_ip3=192.168.183.215
+sipp_rtp_ip1=192.168.183.215
+sipp_rtp_ip2=192.168.183.215
+sipp_port1=11100
+sipp_port2=11200
+sipp_port3=11300
+sipp_port4=11400
+sipp_port5=11500
+sipp_port6=11600
+sipp_port7=11700
+sipp_port8=11800
+sipp_port9=11900
+sipp_port10=12000
+sipp_bridge_port1=23022
+sipp_bridge_port2=23024
+sipp_rtp_port1=21000
+sipp_rtp_port2=22000
+sipp_rtp_port3=23000
+outg_sig_transport=u1
+brdg_sig_transport=u1
+
+
+Test Case:Payload_Value_Change_TC01
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_Payloadchange.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:488 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Garbage_Value_After_Message_Body_TC02
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_Garbageaftermsgbody.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Content_Length_Change_TC03
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_ContentLength.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:400 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_Via_200_TC04
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_viain200.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_Via_200_TC05
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_2callid.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_Invalid_Via_Contact_TC06
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_InvalidViaandContactHeaders.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:400 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_Invalid_Expire_Header_TC07
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_invalidexpheader.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Invite_cseq.xml
+Test Case:Invite_Invalid_Cseq__TC08
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_cseq.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_Unknown_scheme__TC09
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_cseq.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_Expire_Time__TC10
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_Expire_Time.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_longvaluesinheaders__TC11
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_longvaluesinheaders.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_missingTofield__TC12
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_missingTOfiled.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_MAX_FWD_0__TC13
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_MAX_FWD_0.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:483 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invit_nosdp__TC14
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_nonsdp.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:488 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invit_emptyvaluesinheaders__TC15
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_emptyvaluesinheaders.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite_cseqoutoforder__TC16
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_cseqoutoforder.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+#Test Case:Invite_wrongvia__TC17
+#timer:25
+#sipp: sipp -inf OCMP-VM.csv -sf Invite_wrongvia.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+#logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite__nospaceaftrcolons__TC18
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_nospaceaftrcolons.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite__casesensitivefields__TC19
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_casesensitivefields.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:404 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite__negativecontentlength__TC20
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_negativecontentlength.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite__invalidtimezone__TC21
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_invalidtimezone.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite__multiplevalues__TC22
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_multiplevalues.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+#Test Case:Invite__missingcseq__TC23
+#timer:25
+#sipp: sipp -inf OCMP-VM.csv -sf Invite_missingcseq.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+#logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite__escapeheaders__TC24
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_escapeheaders.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+#Test Case:Invite__unknownURI__TC25
+#timer:25
+#sipp: sipp -inf OCMP-VM.csv -sf Invite_unknownURI.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+#logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite__multiplemedialines__TC26
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_multiplemedialines.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:500 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+#Test Case:Invite__nocalltofromheaders__TC27
+#timer:25
+#sipp: sipp -inf OCMP-VM.csv -sf Invite_nocalltofromheaders.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+#logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite__unknowncontenttype__TC28
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_unknowncontenttype.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:415 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Invite_UnacceptableAcceptOffering.xml
+Test Case:Invite__UnacceptableAcceptOffering__TC29
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_UnacceptableAcceptOffering.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite___portunambiguous__TC30
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_portunambiguous.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite___Semicolon__TC31
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_Semicolon.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:404 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+#Test Case:Invite___missingfield__TC32
+#timer:25
+#sipp: sipp -inf OCMP-VM.csv -sf Invite_missingfield.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+#logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite___Unknown_Protocol__TC33
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_Unknown_Protocol.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite____maxfwd__TC34
+timer:10
+sipp: sipp -inf OCMP-VM.csv -sf Invite_maxfwd.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:483 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite____Unknown_scheme__TC35
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_Unknown_scheme.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite____ContentLength__TC36
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_ContentLength.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:400 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite____Garbageaftermsgbody__TC37
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_Garbageaftermsgbody.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+#Test Case:Invite____optionsinviemismatch__TC38
+#timer:25
+#sipp: sipp -inf OCMP-VM.csv -sf Invite_optionsinviemismatch.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+#logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+#Test Case:Invite____Atypicalscheme__TC39
+#timer:25
+#sipp: sipp -inf OCMP-VM.csv -sf Invite_Atypicalscheme.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+#logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
+
+Test Case:Invite___paraminvia__TC40
+timer:25
+sipp: sipp -inf OCMP-VM.csv -sf Invite_paraminvia.xml -t u1 -m 1 -i [sipp_ip1] -p 11800 [OCMP_SIG_ip]:5060 -mi [sipp_ip1] -mp 21000
+logcheck:Method:200 Mocc:1 Header:CSeq Hocc:1 Hstring:INVITE
