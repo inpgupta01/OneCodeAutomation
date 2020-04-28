@@ -182,4 +182,5 @@ def mr_upgrade():
     print("Upgrade test has been completed")
     print("**************************************************************************************************")
     print(final_result)
+    return final_result
 mr_upgrade()
