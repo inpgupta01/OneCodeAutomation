@@ -9,9 +9,9 @@ import paramiko
 from paramiko import AuthenticationException, BadHostKeyException
 from paramiko.ssh_exception import NoValidConnectionsError
 
-mr_ip = str(sys.argv[0])
-controller_job = str(sys.argv[1])
-engine_job = str(sys.argv[2])
+mr_ip = str(sys.argv[1])
+controller_job = str(sys.argv[2])
+engine_job = str(sys.argv[3])
 
 def checking_pre_requisites(mr_ip):
     print("*****************************************************************************************")
