@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 ##Below function will upgrade Media Relay Server using MRc and MRE RPMs
 import os
 import posixpath
@@ -7,6 +9,9 @@ import paramiko
 from paramiko import AuthenticationException, BadHostKeyException
 from paramiko.ssh_exception import NoValidConnectionsError
 
+mr_ip = str(sys.argv[0])
+controller_job = str(sys.argv[1])
+engine_job = str(sys.argv[2])
 
 def checking_pre_requisites(mr_ip):
     print("*****************************************************************************************")
@@ -15,7 +20,7 @@ def checking_pre_requisites(mr_ip):
 
     hostname = mr_ip
     print("\nPinging MR IP " + hostname + " to check if server is up and running \n")
-    response = os.system("ping -n 3 " + hostname)
+    response = os.system("ping -c 3 " + hostname)
     # Ping Host and then check the response...
     if response == 0:
         print(hostname + ' is up and running ....\n\n')
@@ -158,9 +163,6 @@ def validation(ssh):
 
 
 def mr_upgrade():
-    mr_ip = str(sys.argv[0])
-    controller_job = str(sys.argv[1])
-    engine_job = str(sys.argv[2])
     print("Step 1: Checking pre-requisites for MR upgrade :\n")
     print("**********************************************************************************************")
     checking_pre_requisites(mr_ip)
