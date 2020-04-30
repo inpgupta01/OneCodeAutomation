@@ -1,1 +1,1 @@
-%date%
+echo 'Praveen'
