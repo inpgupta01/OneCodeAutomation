@@ -1,1 +1,1 @@
-echo "Quality Test"
+date
