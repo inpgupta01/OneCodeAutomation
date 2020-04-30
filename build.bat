@@ -1,1 +1,1 @@
-echo "Build deployement"
+%date%
