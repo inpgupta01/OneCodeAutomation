@@ -1,3 +1,6 @@
+
+#!/usr/bin/python3
+
 from Pre_Requisite import *
 from validation_gs_call import *
 import pandas as pd
@@ -5,7 +8,7 @@ import time
 import telnetlib
 
 get_data = None
-
+arg = str(sys.argv[1])
 
 def lineRate():
     col_list = ["Line Rate"]
@@ -148,4 +151,4 @@ def main_function(arg):
         return 1
 
 
-main_function(3)
+main_function(arg)
