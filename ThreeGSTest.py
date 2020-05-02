@@ -85,7 +85,7 @@ def check_call_status(arg):
         return 1
 
 
-def main_function(arg):
+def test_main_function(arg):
     retrieveList(arg)
     total_case_executed = 0
     over_all_fail = 0
@@ -150,5 +150,5 @@ def main_function(arg):
     else:
         return 1
 
-
-main_function(arg)
+@allure.severity(allure.severity_level.CRITICAL)
+test_main_function(arg)
