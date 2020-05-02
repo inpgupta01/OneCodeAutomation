@@ -9,6 +9,7 @@ import telnetlib
 
 get_data = None
 arg = str(sys.argv[1])
+arg = int(arg)
 
 def lineRate():
     col_list = ["Line Rate"]
@@ -150,5 +151,4 @@ def test_main_function(arg):
     else:
         return 1
 
-@allure.severity(allure.severity_level.CRITICAL)
 test_main_function(arg)
