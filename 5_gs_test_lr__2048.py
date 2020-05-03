@@ -113,7 +113,7 @@ def main_function(arg):
         print("##########Test Case failed for LR " + str(lr[0]) + " ##########")
         fail_per_lr += 1
         hangup()
-        exit()
+        exit(1)
     print("############Completed Call Status Validation on GS EPs#############\n\n")
     time.sleep(10)
     # Start Statistics Validation(Remote Stream Count,Resolution Count,bit Rate Count and Health status of each call
@@ -135,12 +135,12 @@ def main_function(arg):
         print("\n\n#################################################################")
         print("\nOver All Test Result for " + str(lr[0]) + " GS Test : PASS\n")
         print("#################################################################")
-        return 0
+        exit(0)
     else:
         print("#################################################################")
         print("Over All Test Result for " + str(lr[0]) + " GS Test : FAIL\n")
         print("#################################################################")
-        return 1
+        exit(1)
 
 
 main_function(5)
