@@ -151,7 +151,7 @@ def validation(ssh):
         #cmd_7 = 'rm -rf /tmp/*'
         #stdin, stdout, stderr = ssh.exec_command(cmd_7)
         #print("\nRPMs removed successfully from /tmp/Media* directory ")
-        sys.exit(0)
+        return 0
 
 
     else:
@@ -159,7 +159,7 @@ def validation(ssh):
         #cmd_8 = 'rm -rf /tmp/*'
         #stdin, stdout, stderr = ssh.exec_command(cmd_8)
         #print("\nRPMs removed successfully from /tmp/Media* directory ")
-        sys.exit(1)
+        return 1
 
 
 def mr_upgrade():
@@ -184,5 +184,9 @@ def mr_upgrade():
     print("Upgrade test has been completed")
     print("**************************************************************************************************")
     print(final_result)
-    #return final_result
+    if final_result == 0:
+        sys.exit(0)
+    else:
+        sys.exit(1)
+    
 mr_upgrade()
