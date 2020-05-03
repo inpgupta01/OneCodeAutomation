@@ -66,7 +66,7 @@ def preconditions(args, ip):
         return final_list
     else:
         print("Not enough EPs to proceed the test ")
-        exit()
+        exit(1)
 
 
 
