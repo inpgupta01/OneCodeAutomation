@@ -93,7 +93,7 @@ def server_upgrade(rmx_ip, ssh):
     cmd_8 = "service media-relay-engine start"
     cmd_9 = "service media-relay-controller start"
     cmd_10 = "systemctl stop firewalld"
-    cmd_11 = "systemctl stop firewalld"
+    cmd_11 = "systemctl disable firewalld"
 
     stdin, stdout, stderr = ssh.exec_command(cmd_8 + '&&' + cmd_9 + '&&' + cmd_10 + '&&' + cmd_11)
     for line in stdout:
@@ -145,20 +145,20 @@ def validation(ssh):
             "MR successfully upgraded with  MRC version \'" + controller_installed_version + "\' and MRE version \'" + engine_installed_version + "\'\n")
         print(
             "*********************************************************************************************************")
-        print("Step 5 : Removing copied RPMs from /tmp directory.....\n")
+        #print("Step 5 : Removing copied RPMs from /tmp directory.....\n")
         print(
             "*********************************************************************************************************")
-        cmd_7 = 'rm -rf /tmp/*'
-        stdin, stdout, stderr = ssh.exec_command(cmd_7)
-        print("\nRPMs removed successfully from /tmp/Media* directory ")
+        #cmd_7 = 'rm -rf /tmp/*'
+        #stdin, stdout, stderr = ssh.exec_command(cmd_7)
+        #print("\nRPMs removed successfully from /tmp/Media* directory ")
         return 0
 
 
     else:
         print("Validation failed...\n Please check logs for further information ")
-        cmd_8 = 'rm -rf /tmp/*'
-        stdin, stdout, stderr = ssh.exec_command(cmd_8)
-        print("\nRPMs removed successfully from /tmp/Media* directory ")
+        #cmd_8 = 'rm -rf /tmp/*'
+        #stdin, stdout, stderr = ssh.exec_command(cmd_8)
+        #print("\nRPMs removed successfully from /tmp/Media* directory ")
         return 1
 
 
