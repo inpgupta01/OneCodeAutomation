@@ -43,21 +43,21 @@ def checking_pre_requisites(mr_ip):
                 print("Directory /var/log/poly/media-relay exists in remote server : YES \n")
             except IOError as e:
                 print("Media Relay Directory is not existing at path /var/log/poly in the server %s exits" % e)
-                exit()
+                exit(1)
         except AuthenticationException:
             print("Authentication failed, please verify your credentials: %s")
-            exit()
+            exit(1)
         except BadHostKeyException as badHostKeyException:
             print("Unable to verify server's host key: %s" % badHostKeyException)
-            exit()
+            exit(1)
 
         except NoValidConnectionsError as e:
             print("\n Unable to establish SSH connection: %s" % e)
-            exit()
+            exit(1)
 
     else:
         print("\nFail to ping machine " + mr_ip + ".Please check if server is up and running ")
-        exit()
+        exit(1)
 
 
 def server_upgrade(rmx_ip, ssh):
