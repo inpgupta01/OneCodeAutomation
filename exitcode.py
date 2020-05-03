@@ -13,14 +13,14 @@ def host():
         print("*****************************************************************************************")
         print("Condition 2.Checking SSH connectivity")
         print("*****************************************************************************************")
-        sys.exit(0)
+        return 0
 
     else:
         print("Validation failed...\n Please check logs for further information ")
         # cmd_8 = 'rm -rf /tmp/*'
         # stdin, stdout, stderr = ssh.exec_command(cmd_8)
         # print("\nRPMs removed successfully from /tmp/Media* directory ")
-        sys.exit(1)
+        return 1
 
 
 host()
