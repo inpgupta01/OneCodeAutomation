@@ -35,7 +35,7 @@ def checking_pre_requisites(mr_ip):
             print("SSH Connection : PASS\n")
             try:
                 print("*****************************************************************************************")
-                print("Condition 3: Existence of directory /var/log/media-relay in Remote Server")
+                print("Condition 3: Existence of directory /var/log/poly/media-relay in Remote Server")
                 print("*****************************************************************************************\n")
                 sftp = ssh.open_sftp()
                 sftp.chdir("/var/log/poly/media-relay")
@@ -107,10 +107,10 @@ def build_download(ssh, controller_version, engine_version):
     ##Downloading controller build
 
     cmd_1 = "mkdir -p /tmp/MediaRelayController/ && cd /tmp/MediaRelayController/ && rm -rf *"
-    cmd_2 = "curl  --output artifacts.zip --globoff --header \'PRIVATE-TOKEN: E6U9GiSdxHz3Mn3MGQ_z\' --header \'JOB-TOKEN: $CI_JOB_TOKEN\' https://onecode.polycom-labs.com/api/v4/projects/1104/jobs/" + controller_Job \
+    cmd_2 = "curl  --output artifacts.zip --globoff --header \'PRIVATE-TOKEN: txwgixegQ-VY8harLuew\' --header \'JOB-TOKEN: $CI_JOB_TOKEN\' https://onecode.polycom-labs.com/api/v4/projects/1104/jobs/" + controller_Job \
             + "/artifacts && unzip artifacts.zip "
     cmd_3 = "mkdir -p /tmp/MediaRelayEngine/ && cd /tmp/MediaRelayEngine/ && rm -rf *"
-    cmd_4 = "curl  --output artifacts.zip --globoff --header \'PRIVATE-TOKEN: E6U9GiSdxHz3Mn3MGQ_z\' --header \'JOB-TOKEN: $CI_JOB_TOKEN\' https://onecode.polycom-labs.com/api/v4/projects/1304/jobs/" + engine_job \
+    cmd_4 = "curl  --output artifacts.zip --globoff --header \'PRIVATE-TOKEN: txwgixegQ-VY8harLuew\' --header \'JOB-TOKEN: $CI_JOB_TOKEN\' https://onecode.polycom-labs.com/api/v4/projects/1304/jobs/" + engine_job \
             + "/artifacts && unzip artifacts.zip "
     stdin, stdout, stderr = ssh.exec_command(
         cmd_1 + '&&' + cmd_2 + '&&' + cmd_3 + '&&' + cmd_4)
