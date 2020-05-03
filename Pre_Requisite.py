@@ -5,7 +5,7 @@ import time
 
 def ping_test(gs_ip):
     print("\n ###################### CHECK GS_IP PINGABILITY ############################### \n")
-    response = os.system("ping -n 1 " + gs_ip)
+    response = os.system("ping -c 1 " + gs_ip)
     if response == 0:
         print("\n Network Active on GS : " + gs_ip + "\n")
         return 'success'
