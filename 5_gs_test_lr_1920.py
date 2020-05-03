@@ -136,12 +136,12 @@ def main_function(arg):
         print("\n\n#################################################################")
         print("\nOver All Test Result for " + str(lr[1]) + " GS Test : PASS\n")
         print("#################################################################")
-        return 0
+        exit(0)
     else:
         print("#################################################################")
         print("Over All Test Result for " + str(lr[1]) + " GS Test : FAIL\n")
         print("#################################################################")
-        return 1
+        exit(1)
 
 
 main_function(5)
