@@ -20,7 +20,7 @@ def host():
         # cmd_8 = 'rm -rf /tmp/*'
         # stdin, stdout, stderr = ssh.exec_command(cmd_8)
         # print("\nRPMs removed successfully from /tmp/Media* directory ")
-        sys.exit(0)
+        sys.exit(1)
 
 
 host()
