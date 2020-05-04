@@ -92,9 +92,9 @@ def main_function(arg):
 
     print("#####################Connecting calls on GS############## \n ")
     for ep in final_list:
-        print("Endpoint " + str(ep) + " is connecting to VMR " + str(vmr[2]) + " at line rate " + str(
-            lr[2]) + " kbps.")
-        calling(ep, vmr[2], lr[2])
+        print("Endpoint " + str(ep) + " is connecting to VMR " + str(int(vmr[2])) + " at line rate " + str(
+            int(lr[2])) + " kbps.")
+        calling(ep, int(vmr[2]), int(lr[2]))
         time.sleep(3)
 
     print("#####################Call Connection completed on GS EPs############## \n\n ")
