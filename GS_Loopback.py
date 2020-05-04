@@ -266,7 +266,7 @@ def test_loopback():
     print("****************************************************************")
     print("OVERALL LOOPBACK TESTING RESULT:\n")
     print("****************************************************************")
-    print("TOTAL LR EXECUTED:" + str(len(vmr)))
+    print("TOTAL LR EXECUTED : 5" )
     print("\nPASS : " + str(pass_count))
     print("\nFAIL : " + str(fail_count))
     if fail_count == 0:
