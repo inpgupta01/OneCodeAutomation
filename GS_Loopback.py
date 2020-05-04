@@ -225,7 +225,7 @@ def test_loopback():
     parameter_mismatch = 0
     pass_count = 0
     fail_count = 0
-    for i in range(len(vmr)):
+    for i in range(0,5):
         LR = int(lr[i])
         vmr_no = int(vmr[i])
         ep_ip = str(ip)
