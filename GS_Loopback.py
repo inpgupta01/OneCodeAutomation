@@ -79,19 +79,19 @@ def callState(ip):
     tn.close()
 
 
-def GS_call(GS_IP, VMR, LR):
+def GS_call(GS_IP, vmr,lr):
     ##Dialing GS in to VMR using format  'dial auto @bandwidth @VMR'
-    VMR=int(VMR)
-    LR=int(LR)
-    cmd_1 = "dial manual " + str(LR) + " " + str(VMR)
+    vmr=int(vmr)
+    lr=int(lr)
+    cmd_1 = "dial manual " + str(lr) + " " + str(vmr)
     print(cmd_1)
-    print("\nDialing " + str(VMR) + " on GS " + GS_IP + " with LR " + str(LR) + "\n")
+    print("\nDialing " + str(vmr) + " on GS " + GS_IP + " with LR " + str(lr) + "\n")
     try:
         tn = telnetlib.Telnet(GS_IP, 24)
         tn.write((cmd_1 + "\n").encode('ascii'))
     except Exception as e:
         print(e)
-    print("Call connecting  on GS :" + GS_IP + " with LR:" + LR + " to Conf " + str(VMR))
+    print("Call connecting  on GS :" + GS_IP + " with LR:" + str(lr) + " to Conf " + str(vmr))
     time.sleep(5)
 
     ##Fetching GS statistics using GS REST API Commands
