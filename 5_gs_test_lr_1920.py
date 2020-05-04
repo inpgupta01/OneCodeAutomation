@@ -80,7 +80,7 @@ def check_call_status(arg):
 
     else:
         print("Call connected successfully on " + str(arg - active_count))
-        return 1
+        exit(1)
 
 
 def main_function(arg):
