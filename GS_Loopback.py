@@ -81,7 +81,7 @@ def callState(ip):
 
 def GS_call(GS_IP, VMR, LR):
     ##Dialing GS in to VMR using format  'dial auto @bandwidth @VMR'
-    cmd_1 = "dial manual " + LR + " " + VMR
+    cmd_1 = "dial manual " + str(int(LR)) + " " + str(int(VMR))
     print("\nDialing " + str(VMR) + " on GS " + GS_IP + " with LR " + str(LR) + "\n")
     try:
         tn = telnetlib.Telnet(GS_IP, 24)
@@ -232,7 +232,7 @@ def test_loopback():
         print("\n\n************************************")
         print("Step 1:Connect Call on GS ")
         print("************************************")
-        GS_call(ep_ip, int(vmr_no), int(LR))
+        GS_call(ep_ip, vmr_no,LR)
         call_status = post_dial_call_status(ep_ip)
         if call_status == 1:
             exit(1)
