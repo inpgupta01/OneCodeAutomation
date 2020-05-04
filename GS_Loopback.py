@@ -81,6 +81,8 @@ def callState(ip):
 
 def GS_call(GS_IP, VMR, LR):
     ##Dialing GS in to VMR using format  'dial auto @bandwidth @VMR'
+    print(VMR)
+    print(LR)
     cmd_1 = "dial manual " + str(int(LR)) + " " + str(int(VMR))
     print(cmd_1)
     print("\nDialing " + str(VMR) + " on GS " + GS_IP + " with LR " + str(LR) + "\n")
