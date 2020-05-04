@@ -226,8 +226,8 @@ def test_loopback():
     pass_count = 0
     fail_count = 0
     for i in range(len(vmr)):
-        LR = str(lr[i])
-        vmr_no = str(vmr[i])
+        LR = int(lr[i])
+        vmr_no = int(vmr[i])
         ep_ip = str(ip)
         print("*************************************")
         print("Loop back test started for LR " + str(lr[i]))
