@@ -232,7 +232,7 @@ def test_loopback():
         print("\n\n************************************")
         print("Step 1:Connect Call on GS ")
         print("************************************")
-        GS_call(ep_ip, vmr_no, LR)
+        GS_call(ep_ip, int(vmr_no), int(LR))
         call_status = post_dial_call_status(ep_ip)
         if call_status == 1:
             exit(1)
