@@ -270,4 +270,4 @@ def test_loopback():
         exit(0)
     else:
         exit(1)
-
+test_loopback()
