@@ -48,7 +48,7 @@ lr, vmr, ip = lineRate(), vmr(), ip()
 
 def pingTest(ip):
     print("\n****************************CHECKING GS PINGABILITY**********************************\n")
-    response = os.system("ping -n 5 " + ip)
+    response = os.system("ping -c 5 " + ip)
     if response == 0:
         print("\n Network Active on GS : " + ip + "\n")
         print("\n************************DONE WITH PINGABILITY TEST********************************\n")
