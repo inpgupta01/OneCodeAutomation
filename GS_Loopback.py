@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import telnetlib
 import time
 
