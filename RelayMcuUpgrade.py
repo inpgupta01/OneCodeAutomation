@@ -169,7 +169,7 @@ def mr_upgrade():
     print("All pre-requisites are validated and system looks good to proceed with installation\n")
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ssh.connect(mr_ip, username='root', password='kitten')
+    ssh.connect(mr_ip, username='root', password='!/useResponsibly/!')
     print("Step 2: Downloading latest version from  repository and copying in location/tmp \n")
     build_download(ssh, str(controller_job), str(engine_job))
     print("Step 3: MR Installation \n ")
