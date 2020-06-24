@@ -31,7 +31,7 @@ def checking_pre_requisites(mr_ip):
         try:
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            ssh.connect(mr_ip, username='root', password='kitten')
+            ssh.connect(mr_ip, username='root', password='!/useResponsibly/!')
             print("SSH Connection : PASS\n")
             try:
                 print("*****************************************************************************************")
